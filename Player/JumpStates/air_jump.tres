@@ -7,3 +7,6 @@ script = ExtResource("1_ag51q")
 animation_name = "air_jump"
 jump_height = 2.5
 apex_duration = 0.4
+jum_height = 1.0
+jum_time_to_peak = 1.0
+jum_time_to_descent = 1.0

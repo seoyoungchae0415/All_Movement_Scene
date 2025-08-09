@@ -49,6 +49,7 @@ func _physics_process(delta):
 				jump_name = "air_jump"
 			
 			pressed_jump.emit(jump_states[jump_name])
+			print("jump type : ", jump_name)
 			air_jump_counter += 1
 
 func is_movement_ongoing() -> bool:

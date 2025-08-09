@@ -1,6 +1,5 @@
 [gd_scene load_steps=36 format=3 uid="uid://cboafr7x42bha"]
 
-[ext_resource type="Texture2D" uid="uid://b1gfr1k77ge4v" path="res://Assets/DSF5682-scaled.webp" id="1_erp4l"]
 [ext_resource type="Script" path="res://player.gd" id="2_2346k"]
 [ext_resource type="Resource" uid="uid://cpray1kjky46y" path="res://Player/MovementStates/upright/upright_idle.tres" id="3_aavh0"]
 [ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="3_d66g4"]
@@ -13,15 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/animation_controller.gd" id="8_31ejx"]
 [ext_resource type="Resource" uid="uid://b770hwgq27pab" path="res://Player/JumpStates/Jump_Start.tres" id="8_bivsw"]
 [ext_resource type="Script" path="res://Scripts/stance.gd" id="11_6tkhs"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ux02t"]
-albedo_texture = ExtResource("1_erp4l")
-uv1_scale = Vector3(5, 5, 5)
-uv1_triplanar = true
-uv1_world_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pefrm"]
-albedo_color = Color(0.0137229, 0.112109, 0.155917, 1)
+[ext_resource type="Texture2D" uid="uid://n3i7yyrdrkt1" path="res://icon.svg" id="13_gcydh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nunwj"]
 
@@ -117,26 +108,21 @@ node_connections = [&"Jump_Start", 0, &"on_floor_blend", &"Jump_Start", 1, &"Jum
 [sub_resource type="ViewportTexture" id="ViewportTexture_63tjt"]
 viewport_path = NodePath("Player/Sprite3D/SubViewport")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pefrm"]
+albedo_color = Color(0.0137229, 0.112109, 0.155917, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bak6g"]
+albedo_texture = ExtResource("13_gcydh")
+uv1_scale = Vector3(3, 3, 3)
+
 [node name="MainScene" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1.00184, 0, 0, 0, 1.00184, 0, 0, 0, 1.00184, -0.842464, 0.490545, -1.0107)
-material_override = SubResource("StandardMaterial3D_ux02t")
-use_collision = true
-size = Vector3(1.25635, 1, 0.857056)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(5.56185, 0, 0, 0, 1.00184, 0, 0, 0, 3.36679, -0.289553, 0, -0.393303)
-use_collision = true
-size = Vector3(4, 1, 7)
-material = SubResource("StandardMaterial3D_pefrm")
-
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500195, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29985, 0)
 script = ExtResource("2_2346k")
 movement_states = {
 "run": ExtResource("5_k0spe"),
@@ -176,7 +162,7 @@ script = ExtResource("11_6tkhs")
 script = ExtResource("11_6tkhs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.908324, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.980117, 0)
 shape = SubResource("CapsuleShape3D_nunwj")
 
 [node name="MeshRoot" type="Node3D" parent="Player"]
@@ -185,17 +171,17 @@ shape = SubResource("CapsuleShape3D_nunwj")
 script = ExtResource("11_6tkhs")
 
 [node name="Skeleton3D" parent="Player/MeshRoot/AnimationLibrary_Godot_Standard/Rig" index="0"]
-bones/1/position = Vector3(-0.00226951, 0.0870063, 0.873919)
-bones/1/rotation = Quaternion(0.74299, -0.0827662, -0.0804215, 0.659278)
-bones/3/rotation = Quaternion(-0.022086, -0.00232638, 0.00490366, 0.999741)
-bones/4/rotation = Quaternion(0.164483, -0.00959645, -7.12862e-05, 0.986333)
-bones/5/rotation = Quaternion(0.0279011, 0.00694585, 0.000763696, 0.999586)
-bones/6/rotation = Quaternion(0.00809454, 0.0913355, -0.0142627, 0.995685)
+bones/1/position = Vector3(-0.00424431, 0.0884185, 0.8704)
+bones/1/rotation = Quaternion(0.749461, -0.0776829, -0.0765003, 0.65301)
+bones/3/rotation = Quaternion(-0.0166257, -0.00183495, 0.00688358, 0.999837)
+bones/4/rotation = Quaternion(0.181074, -0.00942617, -0.000539626, 0.983424)
+bones/5/rotation = Quaternion(0.0168409, 0.00703523, 0.00151522, 0.999832)
+bones/6/rotation = Quaternion(-0.00468358, 0.0924234, -0.0135094, 0.995617)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.608801, -0.355916, -0.376043, 0.601063)
-bones/8/rotation = Quaternion(-0.19727, 0.694796, -0.457903, 0.518332)
+bones/7/rotation = Quaternion(-0.61469, -0.352009, -0.379731, 0.595022)
+bones/8/rotation = Quaternion(-0.175145, 0.692294, -0.475068, 0.514163)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(0.256619, 0.0209335, 0.00249426, 0.966283)
+bones/9/rotation = Quaternion(0.269369, 0.00183584, 0.00713409, 0.963009)
 bones/10/rotation = Quaternion(0.0936559, -0.0505475, -0.030826, 0.993843)
 bones/11/rotation = Quaternion(0.367436, 0.604146, -0.36744, 0.604141)
 bones/12/rotation = Quaternion(0.514346, -7.44064e-09, 1.3662e-07, 0.857583)
@@ -216,10 +202,10 @@ bones/24/rotation = Quaternion(0.219373, 0.0107476, 8.74135e-05, 0.975582)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/rotation = Quaternion(0.551057, -0.00022731, -0.000491442, 0.834468)
 bones/25/scale = Vector3(1, 1, 1)
-bones/26/rotation = Quaternion(-0.630373, 0.31756, 0.336845, 0.623154)
-bones/27/rotation = Quaternion(-0.221733, -0.697795, 0.412019, 0.542363)
+bones/26/rotation = Quaternion(-0.636712, 0.3142, 0.339993, 0.61667)
+bones/27/rotation = Quaternion(-0.217479, -0.691319, 0.431905, 0.536879)
 bones/27/scale = Vector3(1, 1, 1)
-bones/28/rotation = Quaternion(0.339726, -0.123615, 0.042185, 0.931411)
+bones/28/rotation = Quaternion(0.344743, -0.107884, 0.036517, 0.931762)
 bones/29/rotation = Quaternion(0.118723, 0.0171678, 0.0445111, 0.991781)
 bones/30/rotation = Quaternion(0.356736, -0.610526, 0.356738, 0.610521)
 bones/30/scale = Vector3(1, 1, 1)
@@ -241,18 +227,18 @@ bones/43/rotation = Quaternion(0.21939, -0.0238026, 0.00530493, 0.975332)
 bones/43/scale = Vector3(1, 1, 1)
 bones/44/rotation = Quaternion(0.536269, 0.000218732, 0.000495291, 0.844047)
 bones/44/scale = Vector3(1, 1, 1)
-bones/45/rotation = Quaternion(0.950668, 0.175865, -0.0165524, 0.255006)
+bones/45/rotation = Quaternion(0.940151, 0.186849, -0.0157551, 0.284526)
 bones/45/scale = Vector3(1, 1, 1)
-bones/46/rotation = Quaternion(0.35589, -0.117481, 0.0528799, 0.925605)
+bones/46/rotation = Quaternion(0.386439, -0.111465, 0.0527011, 0.914037)
 bones/46/scale = Vector3(1, 1, 1)
-bones/47/rotation = Quaternion(-0.526111, 0.0406826, 0.122351, 0.840585)
+bones/47/rotation = Quaternion(-0.534681, 0.0474189, 0.123449, 0.834642)
 bones/47/scale = Vector3(1, 1, 1)
 bones/48/rotation = Quaternion(-0.000137163, 0.964307, -0.264787, -0.000499423)
-bones/49/rotation = Quaternion(0.994325, -0.101749, 0.012471, 0.0284565)
+bones/49/rotation = Quaternion(0.990791, -0.119772, 0.0155924, 0.0612018)
 bones/49/scale = Vector3(1, 1, 1)
-bones/50/rotation = Quaternion(0.146295, 0.357112, -0.0505064, 0.92115)
+bones/50/rotation = Quaternion(0.202876, 0.35035, -0.067967, 0.911854)
 bones/50/scale = Vector3(1, 1, 1)
-bones/51/rotation = Quaternion(-0.5023, -0.0740458, -0.149832, 0.848388)
+bones/51/rotation = Quaternion(-0.528586, -0.0718945, -0.146763, 0.833)
 bones/51/scale = Vector3(1, 1, 1)
 bones/52/rotation = Quaternion(-0.000137062, 0.964307, -0.264787, -0.000499416)
 
@@ -306,6 +292,20 @@ size_flags_horizontal = 4
 text = "STATE"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(5.56185, 0, 0, 0, 1.00184, 0, 0, 0, 3.36679, -0.289553, 0, -0.393303)
+use_collision = true
+size = Vector3(4, 1, 7)
+material = SubResource("StandardMaterial3D_pefrm")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(3.78488, 0, 0, 0, 3.78488, 0, 0, 0, 3.78488, -5.77744, 2.02303, -7.34643)
+use_collision = true
+material = SubResource("StandardMaterial3D_bak6g")
 
 [connection signal="pressed_jump" from="Player" to="Player/MovementController" method="_jump"]
 [connection signal="set_movement_direction" from="Player" to="Player/MovementController" method="_on_set_movement_direction"]

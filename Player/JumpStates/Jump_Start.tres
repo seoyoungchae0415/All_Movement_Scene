@@ -5,5 +5,8 @@
 [resource]
 script = ExtResource("1_bdyv3")
 animation_name = "Jump_Start"
-jump_height = 3.0
+jump_height = 100.0
 apex_duration = 0.5
+jum_height = 1.0
+jum_time_to_peak = 1.0
+jum_time_to_descent = 1.0
