@@ -1,0 +1,317 @@
+[gd_scene load_steps=36 format=3 uid="uid://cboafr7x42bha"]
+
+[ext_resource type="Texture2D" uid="uid://b1gfr1k77ge4v" path="res://Assets/DSF5682-scaled.webp" id="1_erp4l"]
+[ext_resource type="Script" path="res://player.gd" id="2_2346k"]
+[ext_resource type="Resource" uid="uid://cpray1kjky46y" path="res://Player/MovementStates/upright/upright_idle.tres" id="3_aavh0"]
+[ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="3_d66g4"]
+[ext_resource type="Resource" uid="uid://b0rwttt0klh24" path="res://Player/MovementStates/upright/upright_walk.tres" id="4_eyykr"]
+[ext_resource type="Resource" uid="uid://cr173r5s8flks" path="res://Player/MovementStates/upright/upright_run.tres" id="5_k0spe"]
+[ext_resource type="Resource" uid="uid://csqro1x68s0ig" path="res://Player/MovementStates/upright/upright_sprint.tres" id="6_tm7ey"]
+[ext_resource type="Resource" uid="uid://b2gd05702tt6e" path="res://Player/JumpStates/air_jump.tres" id="7_6ag6y"]
+[ext_resource type="Script" path="res://Scripts/movement_controller.gd" id="7_rhs5f"]
+[ext_resource type="PackedScene" uid="uid://bbvxj2gq2twfc" path="res://Player/animation_library_godot_standard.tscn" id="8_5tswk"]
+[ext_resource type="Script" path="res://Scripts/animation_controller.gd" id="8_31ejx"]
+[ext_resource type="Resource" uid="uid://b770hwgq27pab" path="res://Player/JumpStates/Jump_Start.tres" id="8_bivsw"]
+[ext_resource type="Script" path="res://Scripts/stance.gd" id="11_6tkhs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ux02t"]
+albedo_texture = ExtResource("1_erp4l")
+uv1_scale = Vector3(5, 5, 5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pefrm"]
+albedo_color = Color(0.0137229, 0.112109, 0.155917, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nunwj"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a0l4l"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hxnao"]
+animation = &"Sword_Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n5scn"]
+animation = &"Jump_Start"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_dmkc3"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_376p1"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_e72ln"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_drk11"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mqssh"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qc6lb"]
+animation = &"Walk_Formal"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k5fcq"]
+animation = &"Walk_Formal"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8pnfx"]
+animation = &"Sprint"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3wjdg"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_amcdf"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4glqu"]
+animation = &"Sprint"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uov8f"]
+animation = &"Jog_Fwd"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_61hli"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_drk11")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_mqssh")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_qc6lb")
+blend_point_2/pos = 1.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_k5fcq")
+blend_point_3/pos = 1.0
+blend_point_4/node = SubResource("AnimationNodeAnimation_8pnfx")
+blend_point_4/pos = 0.0
+blend_point_5/node = SubResource("AnimationNodeAnimation_3wjdg")
+blend_point_5/pos = 0.0
+blend_point_6/node = SubResource("AnimationNodeAnimation_amcdf")
+blend_point_6/pos = 1.0
+blend_point_7/node = SubResource("AnimationNodeAnimation_4glqu")
+blend_point_7/pos = 2.0
+blend_point_8/node = SubResource("AnimationNodeAnimation_uov8f")
+blend_point_8/pos = 3.0
+min_space = 0.0
+max_space = 3.0
+snap = 1.0
+blend_mode = 2
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_frjlk"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2y3n2"]
+graph_offset = Vector2(514.355, 317.721)
+nodes/Animation2/node = SubResource("AnimationNodeAnimation_a0l4l")
+nodes/Animation2/position = Vector2(460, 240)
+nodes/DoubleJump/node = SubResource("AnimationNodeAnimation_hxnao")
+nodes/DoubleJump/position = Vector2(1300, 660)
+nodes/Jump_Start/node = SubResource("AnimationNodeOneShot_dmkc3")
+nodes/Jump_Start/position = Vector2(1040, 420)
+"nodes/Jump_Start Animation/node" = SubResource("AnimationNodeAnimation_n5scn")
+"nodes/Jump_Start Animation/position" = Vector2(1040, 660)
+nodes/air_jump/node = SubResource("AnimationNodeOneShot_376p1")
+nodes/air_jump/position = Vector2(1300, 420)
+nodes/movement_anim_speed/node = SubResource("AnimationNodeTimeScale_e72ln")
+nodes/movement_anim_speed/position = Vector2(420, 460)
+nodes/movement_blend/node = SubResource("AnimationNodeBlendSpace1D_61hli")
+nodes/movement_blend/position = Vector2(140, 500)
+nodes/on_floor_blend/node = SubResource("AnimationNodeBlend2_frjlk")
+nodes/on_floor_blend/position = Vector2(720, 380)
+nodes/output/position = Vector2(1540, 520)
+node_connections = [&"Jump_Start", 0, &"on_floor_blend", &"Jump_Start", 1, &"Jump_Start Animation", &"air_jump", 0, &"Jump_Start", &"air_jump", 1, &"DoubleJump", &"movement_anim_speed", 0, &"movement_blend", &"on_floor_blend", 0, &"Animation2", &"on_floor_blend", 1, &"movement_anim_speed", &"output", 0, &"air_jump"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_63tjt"]
+viewport_path = NodePath("Player/Sprite3D/SubViewport")
+
+[node name="MainScene" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1.00184, 0, 0, 0, 1.00184, 0, 0, 0, 1.00184, -0.842464, 0.490545, -1.0107)
+material_override = SubResource("StandardMaterial3D_ux02t")
+use_collision = true
+size = Vector3(1.25635, 1, 0.857056)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(5.56185, 0, 0, 0, 1.00184, 0, 0, 0, 3.36679, -0.289553, 0, -0.393303)
+use_collision = true
+size = Vector3(4, 1, 7)
+material = SubResource("StandardMaterial3D_pefrm")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500195, 0)
+script = ExtResource("2_2346k")
+movement_states = {
+"run": ExtResource("5_k0spe"),
+"sprint": ExtResource("6_tm7ey"),
+"stand": ExtResource("3_aavh0"),
+"walk": ExtResource("4_eyykr")
+}
+max_air_jump = 1
+jump_states = {
+"Jump_Start": ExtResource("8_bivsw"),
+"air_jump": ExtResource("7_6ag6y"),
+"ground_jump": ExtResource("8_bivsw")
+}
+
+[node name="MovementController" type="Node" parent="Player" node_paths=PackedStringArray("player", "mesh_root")]
+script = ExtResource("7_rhs5f")
+player = NodePath("..")
+mesh_root = NodePath("../MeshRoot")
+
+[node name="AnimationController" type="Node" parent="Player" node_paths=PackedStringArray("animation_tree", "player")]
+script = ExtResource("8_31ejx")
+animation_tree = NodePath("../MeshRoot/AnimationTree")
+player = NodePath("..")
+
+[node name="Stances" type="Node" parent="Player"]
+
+[node name="upright" type="Node" parent="Player/Stances"]
+script = ExtResource("11_6tkhs")
+
+[node name="stealth" type="Node" parent="Player/Stances"]
+script = ExtResource("11_6tkhs")
+
+[node name="crouch" type="Node" parent="Player/Stances"]
+script = ExtResource("11_6tkhs")
+
+[node name="prone" type="Node" parent="Player/Stances"]
+script = ExtResource("11_6tkhs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.908324, 0)
+shape = SubResource("CapsuleShape3D_nunwj")
+
+[node name="MeshRoot" type="Node3D" parent="Player"]
+
+[node name="AnimationLibrary_Godot_Standard" parent="Player/MeshRoot" instance=ExtResource("8_5tswk")]
+script = ExtResource("11_6tkhs")
+
+[node name="Skeleton3D" parent="Player/MeshRoot/AnimationLibrary_Godot_Standard/Rig" index="0"]
+bones/1/position = Vector3(-0.00226951, 0.0870063, 0.873919)
+bones/1/rotation = Quaternion(0.74299, -0.0827662, -0.0804215, 0.659278)
+bones/3/rotation = Quaternion(-0.022086, -0.00232638, 0.00490366, 0.999741)
+bones/4/rotation = Quaternion(0.164483, -0.00959645, -7.12862e-05, 0.986333)
+bones/5/rotation = Quaternion(0.0279011, 0.00694585, 0.000763696, 0.999586)
+bones/6/rotation = Quaternion(0.00809454, 0.0913355, -0.0142627, 0.995685)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.608801, -0.355916, -0.376043, 0.601063)
+bones/8/rotation = Quaternion(-0.19727, 0.694796, -0.457903, 0.518332)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(0.256619, 0.0209335, 0.00249426, 0.966283)
+bones/10/rotation = Quaternion(0.0936559, -0.0505475, -0.030826, 0.993843)
+bones/11/rotation = Quaternion(0.367436, 0.604146, -0.36744, 0.604141)
+bones/12/rotation = Quaternion(0.514346, -7.44064e-09, 1.3662e-07, 0.857583)
+bones/13/rotation = Quaternion(0.514346, -1.20307e-07, 1.29894e-07, 0.857583)
+bones/14/rotation = Quaternion(0.355655, 0.58062, -0.404501, 0.610548)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/rotation = Quaternion(0.532975, 0.00324483, -0.000810965, 0.846125)
+bones/16/rotation = Quaternion(0.532975, -0.000602198, -0.000955848, 0.84613)
+bones/17/rotation = Quaternion(0.405607, 0.541626, -0.415019, 0.608179)
+bones/18/rotation = Quaternion(0.550226, -0.00791932, 0.00157767, 0.834977)
+bones/19/rotation = Quaternion(0.550367, 0.000335359, 0.000508847, 0.834923)
+bones/20/rotation = Quaternion(0.343829, 0.5747, -0.414016, 0.616516)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/rotation = Quaternion(0.532947, 0.00582485, -0.00498149, 0.846114)
+bones/22/rotation = Quaternion(0.532975, -0.00056869, -0.000902968, 0.84613)
+bones/23/rotation = Quaternion(0.297317, 0.942379, 0.150982, 0.0269884)
+bones/24/rotation = Quaternion(0.219373, 0.0107476, 8.74135e-05, 0.975582)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/rotation = Quaternion(0.551057, -0.00022731, -0.000491442, 0.834468)
+bones/25/scale = Vector3(1, 1, 1)
+bones/26/rotation = Quaternion(-0.630373, 0.31756, 0.336845, 0.623154)
+bones/27/rotation = Quaternion(-0.221733, -0.697795, 0.412019, 0.542363)
+bones/27/scale = Vector3(1, 1, 1)
+bones/28/rotation = Quaternion(0.339726, -0.123615, 0.042185, 0.931411)
+bones/29/rotation = Quaternion(0.118723, 0.0171678, 0.0445111, 0.991781)
+bones/30/rotation = Quaternion(0.356736, -0.610526, 0.356738, 0.610521)
+bones/30/scale = Vector3(1, 1, 1)
+bones/31/rotation = Quaternion(0.499157, 2.31594e-07, 8.39921e-08, 0.866512)
+bones/32/rotation = Quaternion(0.499157, 1.10985e-07, -1.77099e-07, 0.866512)
+bones/33/rotation = Quaternion(0.355664, -0.593671, 0.384133, 0.611146)
+bones/33/scale = Vector3(1, 1, 1)
+bones/34/rotation = Quaternion(0.517984, -0.000784029, -0.00129461, 0.855389)
+bones/35/rotation = Quaternion(0.517985, 0.000585135, 0.00096611, 0.855389)
+bones/36/rotation = Quaternion(0.425128, -0.56495, 0.380799, 0.595894)
+bones/37/rotation = Quaternion(0.535442, 0.0165397, -0.0109319, 0.844339)
+bones/38/rotation = Quaternion(0.535572, -0.000326634, -0.000514727, 0.84449)
+bones/39/rotation = Quaternion(0.359214, -0.595897, 0.380672, 0.609066)
+bones/39/scale = Vector3(1, 1, 1)
+bones/40/rotation = Quaternion(0.517985, -6.29772e-06, -1.02976e-05, 0.85539)
+bones/41/rotation = Quaternion(0.517985, 0.000552549, 0.000912682, 0.855389)
+bones/42/rotation = Quaternion(-0.290838, 0.949649, 0.114584, -0.021217)
+bones/43/rotation = Quaternion(0.21939, -0.0238026, 0.00530493, 0.975332)
+bones/43/scale = Vector3(1, 1, 1)
+bones/44/rotation = Quaternion(0.536269, 0.000218732, 0.000495291, 0.844047)
+bones/44/scale = Vector3(1, 1, 1)
+bones/45/rotation = Quaternion(0.950668, 0.175865, -0.0165524, 0.255006)
+bones/45/scale = Vector3(1, 1, 1)
+bones/46/rotation = Quaternion(0.35589, -0.117481, 0.0528799, 0.925605)
+bones/46/scale = Vector3(1, 1, 1)
+bones/47/rotation = Quaternion(-0.526111, 0.0406826, 0.122351, 0.840585)
+bones/47/scale = Vector3(1, 1, 1)
+bones/48/rotation = Quaternion(-0.000137163, 0.964307, -0.264787, -0.000499423)
+bones/49/rotation = Quaternion(0.994325, -0.101749, 0.012471, 0.0284565)
+bones/49/scale = Vector3(1, 1, 1)
+bones/50/rotation = Quaternion(0.146295, 0.357112, -0.0505064, 0.92115)
+bones/50/scale = Vector3(1, 1, 1)
+bones/51/rotation = Quaternion(-0.5023, -0.0740458, -0.149832, 0.848388)
+bones/51/scale = Vector3(1, 1, 1)
+bones/52/rotation = Quaternion(-0.000137062, 0.964307, -0.264787, -0.000499416)
+
+[node name="AnimationTree" type="AnimationTree" parent="Player/MeshRoot"]
+root_node = NodePath("../AnimationLibrary_Godot_Standard")
+tree_root = SubResource("AnimationNodeBlendTree_2y3n2")
+anim_player = NodePath("../AnimationLibrary_Godot_Standard/AnimationPlayer")
+parameters/Jump_Start/active = false
+parameters/Jump_Start/internal_active = false
+parameters/Jump_Start/request = 0
+parameters/air_jump/active = false
+parameters/air_jump/internal_active = false
+parameters/air_jump/request = 0
+parameters/movement_anim_speed/scale = 1.0
+parameters/movement_blend/blend_position = -0.0261905
+parameters/on_floor_blend/blend_amount = 0.77
+
+[node name="CamRoot" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35086, 0)
+script = ExtResource("3_d66g4")
+
+[node name="CamYaw" type="Node3D" parent="Player/CamRoot"]
+
+[node name="CamPitch" type="Node3D" parent="Player/CamRoot/CamYaw"]
+
+[node name="Camera3D" type="Camera3D" parent="Player/CamRoot/CamYaw/CamPitch"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -1.91834)
+
+[node name="Sprite3D" type="Sprite3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90113, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_63tjt")
+
+[node name="SubViewport" type="SubViewport" parent="Player/Sprite3D"]
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="Label" type="Label" parent="Player/Sprite3D/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "STATE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed_jump" from="Player" to="Player/MovementController" method="_jump"]
+[connection signal="set_movement_direction" from="Player" to="Player/MovementController" method="_on_set_movement_direction"]
+[connection signal="set_movement_state" from="Player" to="Player/MovementController" method="_on_set_movement_state"]
+[connection signal="set_movement_state" from="Player" to="Player/AnimationController" method="_on_set_movement_state"]
+[connection signal="set_movement_state" from="Player" to="Player/CamRoot" method="_on_set_movement_state"]
+[connection signal="set_cam_rotation" from="Player/CamRoot" to="Player/MovementController" method="_on_set_cam_rotation"]
+
+[editable path="Player/MeshRoot/AnimationLibrary_Godot_Standard"]

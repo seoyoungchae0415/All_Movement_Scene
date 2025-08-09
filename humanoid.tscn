@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsiquwdmh7lsx"]
+
+[ext_resource type="PackedScene" uid="uid://cxronkgqw2uwd" path="res://Player/Humanoid.glb" id="1_mmh2x"]
+
+[node name="Humanoid" instance=ExtResource("1_mmh2x")]
